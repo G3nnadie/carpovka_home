@@ -1,4 +1,40 @@
 
+// Open && Close nav
+$('.q-toggle--nav').on('click', function() {
+  $(this).toggleClass('q-toggle--active');
+  $('.q-nav').fadeToggle(200);
+  $('body').toggleClass('q-mob-fix');
+});
+
+// Open && Close drop
+$('.q-drop__open').on('click', function() {
+  $(this).toggleClass('q-drop__open--active');
+  $(this).find('.q-toggle').toggleClass('q-toggle--active');
+  $('.q-drop__box').fadeToggle(200);
+});
+
+$('body').mouseup(function (e) {
+  let modalContent = $(".q-drop");
+  if (!modalContent.is(e.target) && modalContent.has(e.target).length === 0) {
+    $('.q-drop__box').fadeOut(200);
+    $('.q-drop__open').removeClass('q-drop__open--active');
+    $('.q-drop__open .q-toggle').removeClass('q-toggle--active');
+  }
+});
+
+// Open && Close search
+$('.q-search__open').on('click', function() {
+  $('.q-search__form').fadeToggle(200);
+});
+
+$('body').mouseup(function (e) {
+  let modalContent = $(".q-search");
+  if (!modalContent.is(e.target) && modalContent.has(e.target).length === 0) {
+    $('.q-search__form').fadeOut(200);
+  }
+});
+
+// Phone mask
 $(function($){
   $('.phone-mask').mask(('+7 ') + '(999) 999-99-99');
 });
@@ -6,6 +42,7 @@ $(function($){
 
 // Directions for mob.
 $('.q-directions__item').on('click', function() {
+  $('.q-directions__text').hide();
   $(this).find('.q-directions__text').fadeIn(200);
 })
 
